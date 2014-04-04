@@ -1,0 +1,17 @@
+# Replace tabs with two spaces
+# Trim trialing whitespace
+# End all files with newline
+#
+# usage:
+# ./trim-ws .md some_relative_dir
+
+extension=${1}
+relative_dir=${2:-.}
+unique_tmp='9fae6db4a78'
+
+for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/	/  /g' $file; done
+rm $relative_dir/*.$unique_tmp
+for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/[ ]*$//g' $file; done
+rm $relative_dir/*.$unique_tmp
+for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/*$//g' $file; done
+rm $relative_dir/*.$unique_tmp
