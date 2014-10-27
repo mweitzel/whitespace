@@ -9,9 +9,13 @@ extension=${1}
 relative_dir=${2:-.}
 unique_tmp='9fae6db4a78'
 
+# tabs to spaces
 for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/	/  /g' $file; done
 rm $relative_dir/*.$unique_tmp
+# trailing whitespace
 for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/[ ]*$//g' $file; done
 rm $relative_dir/*.$unique_tmp
-for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/*$//g' $file; done
+# trailing ^M char from windows machines
+for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/
+*$//g' $file; done
 rm $relative_dir/*.$unique_tmp
