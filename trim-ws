@@ -16,6 +16,5 @@ rm $relative_dir/*.$unique_tmp
 for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/[ ]*$//g' $file; done
 rm $relative_dir/*.$unique_tmp
 # trailing ^M char from windows machines
-for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/
-*$//g' $file; done
+for file in $(ls -1 $relative_dir/*$extension); do sed -i.$unique_tmp 's/*$//g' $file; done
 rm $relative_dir/*.$unique_tmp
